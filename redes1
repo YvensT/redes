@@ -1,0 +1,29 @@
+package main
+
+import "fmt"
+import "net"
+
+func main() {
+
+
+	connection, _ := net.Listen("tcp","10.241.0.21:9988")
+    for (connection != nil){
+		fmt.Println("aguardando client...")
+		client, _ := connection.accept()
+		buffer := make([]byte, 1024)
+		mLen, _ := client.Read(buffer)
+		fmt.Println("recebido:", string(buffer[:mLen]))
+	}
+}
+
+package main
+
+import "net"
+import "os"
+import "fmt"
+
+func main(){
+	server, _ := net.Dial("tcp", "10.241.0.21:9988")
+	fmt.Println(err)
+	server.Write([]byte(os.Args[1]))
+}
